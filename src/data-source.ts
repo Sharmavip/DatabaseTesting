@@ -6,11 +6,11 @@ import { drivers } from "./entity/drivers"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "172.18.0.3",
+    host: "localhost",
     port: 5432,
     username: "postgres",
-    password: "password",
-    database: "finalproject",
+    password: "postgres",
+    database: "postgres",
     synchronize: true,
     logging: false,
     entities: [employees,trucks, drivers],

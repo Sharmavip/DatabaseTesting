@@ -10,8 +10,8 @@ export class drivers {
     @Column()
     category: string;
 
-    @OneToOne(() => employees)
-    @JoinColumn()
+    @OneToOne(type => employees, employees => employees.drivers)
+    @JoinColumn({name: "employeeId"})
     employees: employees;
 }
 

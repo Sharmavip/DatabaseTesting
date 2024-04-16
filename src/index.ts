@@ -57,7 +57,7 @@ AppDataSource.initialize().then(async () => {
     console.log("Inserting a new Drivers into the database...")
     const drv = new drivers()
     drv.category = "G"
-    await AppDataSource.manager.save(employees)
+    drv.employeeid = 1
     
     await AppDataSource.manager.save(drv)
     console.log("Saved a new driver with id: " + drv.Driverid)

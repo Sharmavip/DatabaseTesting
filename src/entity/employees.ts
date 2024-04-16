@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, Decimal128, Int32 } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne,  FindOptionsRelationsProperty, Decimal128, Int32 } from "typeorm"
 import { ColumnEnumOptions } from "typeorm/decorator/options/ColumnEnumOptions"
 import { UserRole } from './role'
+import { drivers } from "./drivers";
 
 
 @Entity()
@@ -31,4 +32,6 @@ export class employees {
     })
     role: UserRole;
 
+    @OneToOne(type => drivers, drivers => drivers.employees)
+    drivers: drivers;
 }

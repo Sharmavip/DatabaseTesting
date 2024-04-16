@@ -4,6 +4,8 @@ import { employees } from "./entity/employees"
 import { UserRole } from "./entity/role"
 import "reflect-metadata"
 import { drivers } from "./entity/drivers"
+import { DataSource } from "typeorm"
+import { shipments } from "./entity/shipments"
 
 
 AppDataSource.initialize().then(async () => {
@@ -55,9 +57,8 @@ AppDataSource.initialize().then(async () => {
     console.log("Inserting a new Drivers into the database...")
     const drv = new drivers()
     drv.category = "G"
-    drv.employees = employees
+    await AppDataSource.manager.save(employees)
     
-
     await AppDataSource.manager.save(drv)
     console.log("Saved a new driver with id: " + drv.Driverid)
 
@@ -67,3 +68,26 @@ AppDataSource.initialize().then(async () => {
 
 }).catch(error => console.log(error))
 */
+
+AppDataSource.initialize().then(async () => {
+
+    console.log("Inserting a new Shipments into the database...")
+    const shps = new shipments()
+    shps.customername = "Rajesh"
+    shps.address = "236 Lester St"
+    shps.phone1 = "1234567891"
+    shps.phone2 = "1234321236"
+    shps.weight = 100
+    shps.value = 1500
+    shps.origin = "waterloo"
+    shps.destination = "Guleph"
+
+    await AppDataSource.manager.save(shps)
+    console.log("Saved a new shipment with id: " + shps.shipmentId)
+
+    console.log("Loading Shipments from the database...")
+    const users = await AppDataSource.manager.find(shipments)
+    console.log("Loaded Shipments: ", shipments)
+
+}).catch(error => console.log(error))
+

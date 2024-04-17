@@ -30,9 +30,9 @@ export class TrucksController {
 
     async updateTruck(req: Request, res: Response): Promise<void> {
         const id = parseInt(req.params.truckId);
-        const updatedtruck = await this.trucksService.update(id, req.body);
-        if (updatedtruck) {
-            res.json(updatedtruck);
+        const updatedTruck = await this.trucksService.update(id, req.body);
+        if (updatedTruck) {
+            res.json(updatedTruck);
         } else {
             res.status(404).send('Truck not found');
         }

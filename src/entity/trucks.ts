@@ -21,7 +21,7 @@ export class trucks {
     year: number;
 
     @Column()
-    numberofrepairs: number;
+    numberOfRepairs: number;
 
     @OneToOne(type => repairs, repairs => repairs.trucks)
     repairs?: repairs;

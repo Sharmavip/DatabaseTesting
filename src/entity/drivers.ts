@@ -15,10 +15,10 @@ export class drivers {
     @JoinColumn()
     employees?: employees;
 
-    @OneToMany(type => truckTrips, truckTrips => truckTrips.drivers1id)
+    @OneToMany(type => truckTrips, truckTrips => truckTrips.driver1)
     truckTrips1?: truckTrips;
 
-    @OneToMany(type => truckTrips, truckTrips => truckTrips.drivers2id)
+    @OneToMany(type => truckTrips, truckTrips => truckTrips.driver2)
     truckTrips2?: truckTrips;
 
 }

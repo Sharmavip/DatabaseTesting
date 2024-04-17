@@ -6,7 +6,7 @@ import { repairs } from "./repairs";
 export class mechanics {
 
     @PrimaryGeneratedColumn()
-    mechanicid: number;
+    mechanicId: number;
 
     @Column()
     vehiclebrandspecialization: string;

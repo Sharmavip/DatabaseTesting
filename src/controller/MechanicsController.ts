@@ -1,46 +1,46 @@
 import { Request, Response } from 'express';
-import { EmployeesService } from '../services/EmployeesService';
+import { MechanicsService } from '../services/MechanicsService';
 
-export class EmployeesController {
-    private employeesService: EmployeesService;
+export class MechanicsController {
+    private mechanicsService: MechanicsService;
 
     constructor() {
-        this.employeesService = new EmployeesService();
+        this.mechanicsService = new MechanicsService();
     }
 
-     async  getEmployees(req: Request, res: Response): Promise<void> {
-        const employees = await this.employeesService.findAll();
-        res.json(employees);
+    async getMechanics(req: Request, res: Response): Promise<void> {
+        const mechanics = await this.mechanicsService.findAll();
+        res.json(mechanics);
     }
 
-     async  getEmployeeById(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.employeeId);
-        const employee = await this.employeesService.findById(id);
-        if (employee) {
-            res.json(employee);
+    async getMechanicById(req: Request, res: Response): Promise<void> {
+        const id = parseInt(req.params.mechanicId);
+        const mechanic = await this.mechanicsService.findById(id);
+        if (mechanic) {
+            res.json(mechanic);
         } else {
-            res.status(404).send('Employee not found');
+            res.status(404).send('Mechanic not found');
         }
     }
 
-     async  createEmployee(req: Request, res: Response): Promise<void> {
-        const employee = await this.employeesService.create(req.body);
-        res.status(202).json(employee);
+    async createMechanic(req: Request, res: Response): Promise<void> {
+        const mechanic = await this.mechanicsService.create(req.body);
+        res.status(202).json(mechanic);
     }
 
-     async  updateEmployee(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.employeeId);
-        const updatedEmployee = await this.employeesService.update(id, req.body);
-        if (updatedEmployee) {
-            res.json(updatedEmployee);
+    async updateMechanic(req: Request, res: Response): Promise<void> {
+        const id = parseInt(req.params.mechanicId);
+        const updatedMechanic = await this.mechanicsService.update(id, req.body);
+        if (updatedMechanic) {
+            res.json(updatedMechanic);
         } else {
-            res.status(404).send('Employee not found');
+            res.status(404).send('Mechanic not found');
         }
     }
 
-     async  deleteEmployee(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.employeeId);
-        await this.employeesService.delete(id);
+    async deleteMechanic(req: Request, res: Response): Promise<void> {
+        const id = parseInt(req.params.mechanicId);
+        await this.mechanicsService.delete(id);
         res.status(202).send();
     }
 }

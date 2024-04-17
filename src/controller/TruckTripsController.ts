@@ -1,46 +1,46 @@
 import { Request, Response } from 'express';
-import { EmployeesService } from '../services/EmployeesService';
+import { TruckTripsService } from '../services/TruckTripsService';
 
-export class EmployeesController {
-    private employeesService: EmployeesService;
+export class TruckTripsController {
+    private truckTripsService: TruckTripsService;
 
     constructor() {
-        this.employeesService = new EmployeesService();
+        this.truckTripsService = new TruckTripsService();
     }
 
-     async  getEmployees(req: Request, res: Response): Promise<void> {
-        const employees = await this.employeesService.findAll();
-        res.json(employees);
+    async getTruckTrips(req: Request, res: Response): Promise<void> {
+        const truckTrips = await this.truckTripsService.findAll();
+        res.json(truckTrips);
     }
 
-     async  getEmployeeById(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.employeeId);
-        const employee = await this.employeesService.findById(id);
-        if (employee) {
-            res.json(employee);
+    async getTruckTripById(req: Request, res: Response): Promise<void> {
+        const id = parseInt(req.params.tripId);
+        const truckTrip = await this.truckTripsService.findById(id);
+        if (truckTrip) {
+            res.json(truckTrip);
         } else {
-            res.status(404).send('Employee not found');
+            res.status(404).send('TruckTrip not found');
         }
     }
 
-     async  createEmployee(req: Request, res: Response): Promise<void> {
-        const employee = await this.employeesService.create(req.body);
-        res.status(202).json(employee);
+    async createTruckTrip(req: Request, res: Response): Promise<void> {
+        const truckTrip = await this.truckTripsService.create(req.body);
+        res.status(202).json(truckTrip);
     }
 
-     async  updateEmployee(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.employeeId);
-        const updatedEmployee = await this.employeesService.update(id, req.body);
-        if (updatedEmployee) {
-            res.json(updatedEmployee);
+    async updateTruckTrip(req: Request, res: Response): Promise<void> {
+        const id = parseInt(req.params.tripId);
+        const updatedTruckTrip = await this.truckTripsService.update(id, req.body);
+        if (updatedTruckTrip) {
+            res.json(updatedTruckTrip);
         } else {
-            res.status(404).send('Employee not found');
+            res.status(404).send('TruckTrip not found');
         }
     }
 
-     async  deleteEmployee(req: Request, res: Response): Promise<void> {
-        const id = parseInt(req.params.employeeId);
-        await this.employeesService.delete(id);
+    async deleteTruckTrip(req: Request, res: Response): Promise<void> {
+        const id = parseInt(req.params.tripId);
+        await this.truckTripsService.delete(id);
         res.status(202).send();
     }
 }

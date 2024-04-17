@@ -7,36 +7,28 @@ import { drivers } from './drivers'
 export class truckTrips {
 
     @PrimaryGeneratedColumn()
-    tripid: number;
+    tripId: number;
 
     @Column()
-    routefrom: string;
+    routeFrom: string;
 
     @Column()
-    routeto: string;
+    routeTo: string;
 
-    @Column()
-    drivers1id: number;
-
-    @Column()
-    drivers2id: number;
-
-    @ManyToOne(type => trucks)
+    @ManyToOne(type => trucks, trucks => trucks.truckTrips, { eager: true })
     @JoinColumn()
     trucks?: trucks;
 
-    @ManyToOne(type => shipments)
+    @ManyToOne(type => shipments, shipments => shipments.truckTrips, { eager: true })
     @JoinColumn()
     shipments?: shipments;
 
-    @ManyToOne(type => drivers, { eager: true })
+    @ManyToOne(type => drivers, drivers => drivers.truckTrips1, { eager: true })
     @JoinColumn()
-    drivers1?: drivers;
+    driver1?: drivers;
 
-    @ManyToOne(type => drivers, { eager: true })
+    @ManyToOne(type => drivers, drivers => drivers.truckTrips2, { eager: true })
     @JoinColumn()
-    drivers2?: drivers;
+    driver2?: drivers;
 
 }
-
-

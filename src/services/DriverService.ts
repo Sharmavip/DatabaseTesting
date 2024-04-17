@@ -28,10 +28,10 @@ export class DriversService {
     }
 
     async update(driverId: number, driversData: drivers) {
-        let drivers = await this.findById(driverId);
-        if (!drivers) return null;
-        Object.assign(drivers, driversData);
-        return this.driversRepository.save(drivers);
+        let driver = await this.findById(driverId);
+        if (!driver) return null;
+        Object.assign(driver, driversData);
+        return this.driversRepository.save(driver);
     }
 
     async delete(driverId: number) {

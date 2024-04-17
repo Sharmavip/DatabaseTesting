@@ -6,10 +6,10 @@ import { trucks } from './trucks'
 export class repairs {
 
     @PrimaryGeneratedColumn()
-    repairid: number;
+    repairId: number;
 
     @Column()
-    estimatedtimedays: number;
+    estimatedTimeDays: number;
 
     @OneToOne(type => trucks, trucks => trucks.repairs)
     @JoinColumn()

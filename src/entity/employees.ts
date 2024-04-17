@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToOne,  FindOptionsRelations
 import { ColumnEnumOptions } from "typeorm/decorator/options/ColumnEnumOptions"
 import { UserRole } from './role'
 import { drivers } from "./drivers";
+import { mechanics } from "./mechanics";
 
 
 @Entity()
@@ -34,4 +35,7 @@ export class employees {
 
     @OneToOne(type => drivers, drivers => drivers.employees)
     drivers: drivers;
+
+    @OneToOne(type => mechanics, mechanics => mechanics.employees)
+    mechanics: mechanics;
 }

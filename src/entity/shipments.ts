@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Decimal128, Int32 } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Decimal128, Int32, OneToOne } from "typeorm"
 import { ColumnEnumOptions } from "typeorm/decorator/options/ColumnEnumOptions"
-
+import { trucktrips } from "./trucktrips";
 
 
 @Entity()
@@ -42,5 +42,9 @@ export class shipments {
 
     @Column()
     destination: string;
+  
+
+    @OneToOne(type => trucktrips, trucktrips => trucktrips.shipments)
+    trucktrips: trucktrips;
 
 }

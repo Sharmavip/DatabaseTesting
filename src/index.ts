@@ -5,8 +5,11 @@ import { UserRole } from "./entity/role"
 import "reflect-metadata"
 import { drivers } from "./entity/drivers"
 import { DataSource } from "typeorm"
-import { shipments } from "./entity/shipments"
+import { trucktrips } from "./entity/trucktrips"
 
+import { mechanics } from "./entity/mechanics"
+import { repairs } from "./entity/repairs"
+import { shipments } from "./entity/shipments"
 
 AppDataSource.initialize().then(async () => {
 
@@ -29,6 +32,7 @@ AppDataSource.initialize().then(async () => {
 
 }).catch(error => console.log(error))
 
+/*
 //2nd table
 AppDataSource.initialize().then(async () => {
 
@@ -49,15 +53,15 @@ AppDataSource.initialize().then(async () => {
 
 }).catch(error => console.log(error))
 
+*/
 
-/*
 //3rd table
 AppDataSource.initialize().then(async () => {
 
     console.log("Inserting a new Drivers into the database...")
     const drv = new drivers()
     drv.category = "G"
-    drv.employeeid = 1
+    drv.employees = new employees
     
     await AppDataSource.manager.save(drv)
     console.log("Saved a new driver with id: " + drv.Driverid)
@@ -67,7 +71,7 @@ AppDataSource.initialize().then(async () => {
     console.log("Loaded Drivers: ", drivers)
 
 }).catch(error => console.log(error))
-*/
+
 
 AppDataSource.initialize().then(async () => {
 

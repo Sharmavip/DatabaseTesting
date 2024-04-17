@@ -4,7 +4,7 @@ import { trucks } from './trucks'
 import { drivers } from './drivers'
 
 @Entity()
-export class trucktrips {s
+export class truckTrips {
 
     @PrimaryGeneratedColumn()
     tripid: number;
@@ -22,24 +22,21 @@ export class trucktrips {s
     drivers2id: number;
 
     @ManyToOne(type => trucks)
-    @JoinColumn({name: "truckId"})
-    trucks: trucks;
+    @JoinColumn()
+    trucks?: trucks;
 
     @ManyToOne(type => shipments)
-    @JoinColumn({name: "shipmentid"})
-    shipments: shipments;
+    @JoinColumn()
+    shipments?: shipments;
 
-    @ManyToOne(type => drivers, { eager:  true })
-    @JoinColumn({name: "drivers1id"})
-    drivers1: drivers;
+    @ManyToOne(type => drivers, { eager: true })
+    @JoinColumn()
+    drivers1?: drivers;
 
-    @ManyToOne(type => drivers, { eager:  true })
-    @JoinColumn({name: "drivers2id"})
-    drivers2: drivers;
+    @ManyToOne(type => drivers, { eager: true })
+    @JoinColumn()
+    drivers2?: drivers;
 
-    
-
-    
 }
 
 

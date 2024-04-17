@@ -1,19 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne,  FindOptionsRelationsProperty, Decimal128, Int32 } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, FindOptionsRelationsProperty, Decimal128, Int32 } from "typeorm"
 import { ColumnEnumOptions } from "typeorm/decorator/options/ColumnEnumOptions"
 import { UserRole } from './role'
 import { drivers } from "./drivers";
 import { mechanics } from "./mechanics";
 
-
 @Entity()
-
-
 export class employees {
 
     @PrimaryGeneratedColumn()
-    employeeid: number;
+    employeeId: number;
 
-    @Column({ 
+    @Column({
         length: 100
     })
     name: string;
@@ -24,7 +21,7 @@ export class employees {
     surname: string;
 
     @Column()
-    senority: number;
+    seniority: number;
 
     @Column({
         type: "enum",
@@ -34,8 +31,9 @@ export class employees {
     role: UserRole;
 
     @OneToOne(type => drivers, drivers => drivers.employees)
-    drivers: drivers;
+    drivers?: drivers;
 
     @OneToOne(type => mechanics, mechanics => mechanics.employees)
-    mechanics: mechanics;
+    mechanics?: mechanics;
+
 }

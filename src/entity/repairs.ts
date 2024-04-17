@@ -12,12 +12,13 @@ export class repairs {
     estimatedtimedays: number;
 
     @OneToOne(type => trucks, trucks => trucks.repairs)
-    @JoinColumn({name: "truckId"})
-    trucks: trucks;
+    @JoinColumn()
+    trucks?: trucks;
 
     @OneToOne(type => mechanics, mechanics => mechanics.repairs)
-    @JoinColumn({name: "mechanicid"})
-    mechanics: mechanics;
+    @JoinColumn()
+    mechanics?: mechanics;
+
 }
 
 

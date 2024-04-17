@@ -1,25 +1,26 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Double, OneToMany } from "typeorm"
 import { employees } from './employees'
-import { trucktrips } from "./trucktrips";
+import { truckTrips } from "./truckTrips";
 
 @Entity()
 export class drivers {
 
     @PrimaryGeneratedColumn()
-    Driverid: number;
+    driverId: number;
 
     @Column()
     category: string;
 
     @OneToOne(type => employees, employees => employees.drivers)
-    @JoinColumn({name: "employeeId"})
-    employees: employees;
+    @JoinColumn()
+    employees?: employees;
 
-    @OneToMany(type => trucktrips, trucktrips => trucktrips.drivers1id)
-    trucktrips1: trucktrips;
+    @OneToMany(type => truckTrips, truckTrips => truckTrips.drivers1id)
+    truckTrips1?: truckTrips;
 
-    @OneToMany(type => trucktrips, trucktrips => trucktrips.drivers2id)
-    trucktrips2: trucktrips;
+    @OneToMany(type => truckTrips, truckTrips => truckTrips.drivers2id)
+    truckTrips2?: truckTrips;
+
 }
 
 

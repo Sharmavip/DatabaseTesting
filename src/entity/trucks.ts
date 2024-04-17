@@ -1,13 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, Double, OneToOne, OneToMany } from "typeorm"
 import { repairs } from "./repairs";
-import { trucktrips } from "./trucktrips";
-
+import { truckTrips } from "./truckTrips";
 
 @Entity()
 export class trucks {
 
     @PrimaryGeneratedColumn()
-    Truckid: number;
+    truckId: number;
 
     @Column()
     brand: string;
@@ -25,10 +24,10 @@ export class trucks {
     numberofrepairs: number;
 
     @OneToOne(type => repairs, repairs => repairs.trucks)
-    repairs: repairs;
+    repairs?: repairs;
 
-    @OneToMany(type => trucktrips, trucktrips => trucktrips.trucks)
-    trucktrips: trucktrips;
+    @OneToMany(type => truckTrips, truckTrips => truckTrips.trucks)
+    truckTrips?: truckTrips;
 
 }
 

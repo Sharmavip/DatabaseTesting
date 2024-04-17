@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from "typeorm";
 
 export class Renamecol implements MigrationInterface {
 
@@ -7,6 +7,6 @@ export class Renamecol implements MigrationInterface {
     }
 
     public async down(queryrunner: QueryRunner): Promise<void> {
-            await queryrunner.query(`Alter table "employees" Rename column lastname to surname`);
-     }
+        await queryrunner.query(`Alter table "employees" Rename column lastname to surname`);
+    }
 }

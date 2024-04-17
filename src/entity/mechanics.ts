@@ -12,11 +12,12 @@ export class mechanics {
     vehiclebrandspecialization: string;
 
     @OneToOne(type => employees, employees => employees.drivers)
-    @JoinColumn({name: "employeeId"})
-    employees: employees;
+    @JoinColumn()
+    employees?: employees;
 
     @OneToOne(type => repairs, repairs => repairs.mechanics)
-    repairs: repairs;
+    repairs?: repairs;
+
 }
 
 

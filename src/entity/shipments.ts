@@ -1,20 +1,17 @@
 import { Entity, PrimaryGeneratedColumn, Column, Decimal128, Int32, OneToOne } from "typeorm"
 import { ColumnEnumOptions } from "typeorm/decorator/options/ColumnEnumOptions"
-import { trucktrips } from "./trucktrips";
-
+import { truckTrips } from "./truckTrips";
 
 @Entity()
-
-
 export class shipments {
 
     @PrimaryGeneratedColumn()
     shipmentId: number;
 
-    @Column({ 
+    @Column({
         length: 100
     })
-    customername: string;
+    customerName: string;
 
     @Column({
         length: 250
@@ -42,9 +39,8 @@ export class shipments {
 
     @Column()
     destination: string;
-  
 
-    @OneToOne(type => trucktrips, trucktrips => trucktrips.shipments)
-    trucktrips: trucktrips;
+    @OneToOne((type) => truckTrips, truckTrips => truckTrips.shipments)
+    truckTrips?: truckTrips;
 
 }

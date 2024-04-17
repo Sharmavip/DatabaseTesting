@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Double } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Double, OneToOne, OneToMany } from "typeorm"
+import { repairs } from "./repairs";
+import { trucktrips } from "./trucktrips";
 
 
 @Entity()
@@ -21,6 +23,12 @@ export class trucks {
 
     @Column()
     numberofrepairs: number;
+
+    @OneToOne(type => repairs, repairs => repairs.trucks)
+    repairs: repairs;
+
+    @OneToMany(type => trucktrips, trucktrips => trucktrips.trucks)
+    trucktrips: trucktrips;
 
 }
 

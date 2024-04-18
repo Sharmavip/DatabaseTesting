@@ -2,10 +2,12 @@ import { AppDataSource } from '../data-source';
 import { mechanics } from '../entity/mechanics';
 
 export class MechanicsService {
+
     private mechanicsRepository = AppDataSource.getRepository(mechanics);
 
     async findAll() {
-        return this.mechanicsRepository.find({
+
+        return await this.mechanicsRepository.find({
             relations:
             {
                 employees: true,
@@ -15,7 +17,8 @@ export class MechanicsService {
     }
 
     async findById(mechanicId: number) {
-        return this.mechanicsRepository.findOne({
+
+        return await this.mechanicsRepository.findOne({
             where: {
                 mechanicId
             }, relations: {
@@ -27,17 +30,20 @@ export class MechanicsService {
 
     async create(mechanicsData: mechanics) {
         const mechanic = this.mechanicsRepository.create(mechanicsData);
-        return this.mechanicsRepository.save(mechanic);
+
+        return await this.mechanicsRepository.save(mechanic);
     }
 
     async update(mechanicId: number, mechanicsData: mechanics) {
         let mechanic = await this.findById(mechanicId);
-        if (!mechanic) return null;
+        if (!mechanic) return;
         Object.assign(mechanic, mechanicsData);
-        return this.mechanicsRepository.save(mechanic);
+
+        return await this.mechanicsRepository.save(mechanic);
     }
 
     async delete(mechanicId: number) {
-        return this.mechanicsRepository.delete(mechanicId);
+
+        return await this.mechanicsRepository.delete(mechanicId);
     }
 }

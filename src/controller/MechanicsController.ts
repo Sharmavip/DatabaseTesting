@@ -8,12 +8,12 @@ export class MechanicsController {
         this.mechanicsService = new MechanicsService();
     }
 
-    async getMechanics(req: Request, res: Response): Promise<void> {
+    async getMechanics(req: Request, res: Response) {
         const mechanics = await this.mechanicsService.findAll();
         res.json(mechanics);
     }
 
-    async getMechanicById(req: Request, res: Response): Promise<void> {
+    async getMechanicById(req: Request, res: Response) {
         const id = parseInt(req.params.mechanicId);
         const mechanic = await this.mechanicsService.findById(id);
         if (mechanic) {
@@ -23,12 +23,12 @@ export class MechanicsController {
         }
     }
 
-    async createMechanic(req: Request, res: Response): Promise<void> {
+    async createMechanic(req: Request, res: Response) {
         const mechanic = await this.mechanicsService.create(req.body);
         res.status(202).json(mechanic);
     }
 
-    async updateMechanic(req: Request, res: Response): Promise<void> {
+    async updateMechanic(req: Request, res: Response) {
         const id = parseInt(req.params.mechanicId);
         const updatedMechanic = await this.mechanicsService.update(id, req.body);
         if (updatedMechanic) {
@@ -38,7 +38,7 @@ export class MechanicsController {
         }
     }
 
-    async deleteMechanic(req: Request, res: Response): Promise<void> {
+    async deleteMechanic(req: Request, res: Response) {
         const id = parseInt(req.params.mechanicId);
         await this.mechanicsService.delete(id);
         res.status(202).send();

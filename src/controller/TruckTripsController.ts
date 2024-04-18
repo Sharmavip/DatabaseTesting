@@ -8,12 +8,12 @@ export class TruckTripsController {
         this.truckTripsService = new TruckTripsService();
     }
 
-    async getTruckTrips(req: Request, res: Response): Promise<void> {
+    async getTruckTrips(req: Request, res: Response) {
         const truckTrips = await this.truckTripsService.findAll();
         res.json(truckTrips);
     }
 
-    async getTruckTripById(req: Request, res: Response): Promise<void> {
+    async getTruckTripById(req: Request, res: Response) {
         const id = parseInt(req.params.tripId);
         const truckTrip = await this.truckTripsService.findById(id);
         if (truckTrip) {
@@ -23,12 +23,12 @@ export class TruckTripsController {
         }
     }
 
-    async createTruckTrip(req: Request, res: Response): Promise<void> {
+    async createTruckTrip(req: Request, res: Response) {
         const truckTrip = await this.truckTripsService.create(req.body);
         res.status(202).json(truckTrip);
     }
 
-    async updateTruckTrip(req: Request, res: Response): Promise<void> {
+    async updateTruckTrip(req: Request, res: Response) {
         const id = parseInt(req.params.tripId);
         const updatedTruckTrip = await this.truckTripsService.update(id, req.body);
         if (updatedTruckTrip) {
@@ -38,7 +38,7 @@ export class TruckTripsController {
         }
     }
 
-    async deleteTruckTrip(req: Request, res: Response): Promise<void> {
+    async deleteTruckTrip(req: Request, res: Response) {
         const id = parseInt(req.params.tripId);
         await this.truckTripsService.delete(id);
         res.status(202).send();

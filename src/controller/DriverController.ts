@@ -8,12 +8,12 @@ export class DriversController {
         this.driversService = new DriversService();
     }
 
-     async  getDrivers(req: Request, res: Response): Promise<void> {
+    async getDrivers(req: Request, res: Response) {
         const drivers = await this.driversService.findAll();
         res.json(drivers);
     }
 
-     async  getDriverById(req: Request, res: Response): Promise<void> {
+    async getDriverById(req: Request, res: Response) {
         const id = parseInt(req.params.driverId);
         const driver = await this.driversService.findById(id);
         if (driver) {
@@ -23,12 +23,12 @@ export class DriversController {
         }
     }
 
-     async  createDriver(req: Request, res: Response): Promise<void> {
+    async createDriver(req: Request, res: Response) {
         const driver = await this.driversService.create(req.body);
         res.status(202).json(driver);
     }
 
-     async  updateDriver(req: Request, res: Response): Promise<void> {
+    async updateDriver(req: Request, res: Response) {
         const id = parseInt(req.params.driverId);
         const updatedDriver = await this.driversService.update(id, req.body);
         if (updatedDriver) {
@@ -38,7 +38,7 @@ export class DriversController {
         }
     }
 
-     async  deleteDriver(req: Request, res: Response): Promise<void> {
+    async deleteDriver(req: Request, res: Response) {
         const id = parseInt(req.params.driverId);
         await this.driversService.delete(id);
         res.status(202).send();

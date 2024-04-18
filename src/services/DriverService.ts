@@ -2,10 +2,12 @@ import { AppDataSource } from '../data-source';
 import { drivers } from '../entity/drivers';
 
 export class DriversService {
+
     private driversRepository = AppDataSource.getRepository(drivers);
 
     async findAll() {
-        return this.driversRepository.find({
+
+        return await this.driversRepository.find({
             relations: {
                 employees: true,
             },
@@ -13,7 +15,8 @@ export class DriversService {
     }
 
     async findById(driverId: number) {
-        return this.driversRepository.findOne({
+
+        return await this.driversRepository.findOne({
             where: {
                 driverId,
             }, relations: {
@@ -24,17 +27,20 @@ export class DriversService {
 
     async create(driversData: drivers) {
         const drivers = this.driversRepository.create(driversData);
-        return this.driversRepository.save(drivers);
+
+        return await this.driversRepository.save(drivers);
     }
 
     async update(driverId: number, driversData: drivers) {
         let driver = await this.findById(driverId);
-        if (!driver) return null;
+        if (!driver) return;
         Object.assign(driver, driversData);
-        return this.driversRepository.save(driver);
+
+        return await this.driversRepository.save(driver);
     }
 
     async delete(driverId: number) {
-        return this.driversRepository.delete(driverId);
+
+        return await this.driversRepository.delete(driverId);
     }
 }

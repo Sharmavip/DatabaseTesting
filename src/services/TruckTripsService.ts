@@ -2,10 +2,12 @@ import { AppDataSource } from '../data-source';
 import { truckTrips } from '../entity/truckTrips';
 
 export class TruckTripsService {
+
     private truckTripsRepository = AppDataSource.getRepository(truckTrips);
 
     async findAll() {
-        return this.truckTripsRepository.find({
+
+        return await this.truckTripsRepository.find({
             relations:
             {
                 trucks: true,
@@ -17,7 +19,8 @@ export class TruckTripsService {
     }
 
     async findById(tripId: number) {
-        return this.truckTripsRepository.findOne({
+
+        return await this.truckTripsRepository.findOne({
             where: {
                 tripId
             }, relations: {
@@ -31,17 +34,20 @@ export class TruckTripsService {
 
     async create(truckTripsData: truckTrips) {
         const truckTrip = this.truckTripsRepository.create(truckTripsData);
-        return this.truckTripsRepository.save(truckTrip);
+
+        return await this.truckTripsRepository.save(truckTrip);
     }
 
     async update(truckTripId: number, truckTripsData: truckTrips) {
         let truckTrip = await this.findById(truckTripId);
-        if (!truckTrip) return null;
+        if (!truckTrip) return;
         Object.assign(truckTrip, truckTripsData);
-        return this.truckTripsRepository.save(truckTrip);
+
+        return await this.truckTripsRepository.save(truckTrip);
     }
 
     async delete(truckTripId: number) {
-        return this.truckTripsRepository.delete(truckTripId);
+
+        return await this.truckTripsRepository.delete(truckTripId);
     }
 }

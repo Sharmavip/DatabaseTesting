@@ -8,12 +8,12 @@ export class EmployeesController {
         this.employeesService = new EmployeesService();
     }
 
-     async  getEmployees(req: Request, res: Response): Promise<void> {
+    async getEmployees(req: Request, res: Response) {
         const employees = await this.employeesService.findAll();
         res.json(employees);
     }
 
-     async  getEmployeeById(req: Request, res: Response): Promise<void> {
+    async getEmployeeById(req: Request, res: Response) {
         const id = parseInt(req.params.employeeId);
         const employee = await this.employeesService.findById(id);
         if (employee) {
@@ -23,12 +23,12 @@ export class EmployeesController {
         }
     }
 
-     async  createEmployee(req: Request, res: Response): Promise<void> {
+    async createEmployee(req: Request, res: Response) {
         const employee = await this.employeesService.create(req.body);
         res.status(202).json(employee);
     }
 
-     async  updateEmployee(req: Request, res: Response): Promise<void> {
+    async updateEmployee(req: Request, res: Response) {
         const id = parseInt(req.params.employeeId);
         const updatedEmployee = await this.employeesService.update(id, req.body);
         if (updatedEmployee) {
@@ -38,7 +38,7 @@ export class EmployeesController {
         }
     }
 
-     async  deleteEmployee(req: Request, res: Response): Promise<void> {
+    async deleteEmployee(req: Request, res: Response) {
         const id = parseInt(req.params.employeeId);
         await this.employeesService.delete(id);
         res.status(202).send();

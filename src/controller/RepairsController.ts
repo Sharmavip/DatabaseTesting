@@ -8,12 +8,12 @@ export class RepairsController {
         this.repairsService = new RepairsService();
     }
 
-    async getRepairs(req: Request, res: Response): Promise<void> {
+    async getRepairs(req: Request, res: Response) {
         const repairs = await this.repairsService.findAll();
         res.json(repairs);
     }
 
-    async getRepairById(req: Request, res: Response): Promise<void> {
+    async getRepairById(req: Request, res: Response) {
         const id = parseInt(req.params.repairId);
         const repair = await this.repairsService.findById(id);
         if (repair) {
@@ -23,12 +23,12 @@ export class RepairsController {
         }
     }
 
-    async createRepair(req: Request, res: Response): Promise<void> {
+    async createRepair(req: Request, res: Response) {
         const repair = await this.repairsService.create(req.body);
         res.status(202).json(repair);
     }
 
-    async updateRepair(req: Request, res: Response): Promise<void> {
+    async updateRepair(req: Request, res: Response) {
         const id = parseInt(req.params.repairId);
         const updatedRepair = await this.repairsService.update(id, req.body);
         if (updatedRepair) {
@@ -38,7 +38,7 @@ export class RepairsController {
         }
     }
 
-    async deleteRepair(req: Request, res: Response): Promise<void> {
+    async deleteRepair(req: Request, res: Response) {
         const id = parseInt(req.params.repairId);
         await this.repairsService.delete(id);
         res.status(202).send();

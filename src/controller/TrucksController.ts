@@ -8,12 +8,12 @@ export class TrucksController {
         this.trucksService = new TrucksService();
     }
 
-    async getTrucks(req: Request, res: Response): Promise<void> {
+    async getTrucks(req: Request, res: Response) {
         const trucks = await this.trucksService.findAll();
         res.json(trucks);
     }
 
-    async getTruckById(req: Request, res: Response): Promise<void> {
+    async getTruckById(req: Request, res: Response) {
         const id = parseInt(req.params.truckId);
         const truck = await this.trucksService.findById(id);
         if (truck) {
@@ -23,12 +23,12 @@ export class TrucksController {
         }
     }
 
-    async createTruck(req: Request, res: Response): Promise<void> {
+    async createTruck(req: Request, res: Response) {
         const truck = await this.trucksService.create(req.body);
         res.status(202).json(truck);
     }
 
-    async updateTruck(req: Request, res: Response): Promise<void> {
+    async updateTruck(req: Request, res: Response) {
         const id = parseInt(req.params.truckId);
         const updatedTruck = await this.trucksService.update(id, req.body);
         if (updatedTruck) {
@@ -38,7 +38,7 @@ export class TrucksController {
         }
     }
 
-    async deleteTruck(req: Request, res: Response): Promise<void> {
+    async deleteTruck(req: Request, res: Response) {
         const id = parseInt(req.params.truckId);
         await this.trucksService.delete(id);
         res.status(202).send();

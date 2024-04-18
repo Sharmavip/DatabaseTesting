@@ -1,12 +1,9 @@
 import request from 'supertest';
 import app from '../../app';
 import { AppDataSource } from '../../data-source';
-import { repairs } from '../../entity/repairs';
 import { drivers } from '../../entity/drivers';
 import { trucks } from '../../entity/trucks';
 import { shipments } from '../../entity/shipments';
-import { truckTrips } from '../../entity/truckTrips';
-
 
 describe('Integration testing trucktrips', () => {
 
@@ -21,7 +18,7 @@ describe('Integration testing trucktrips', () => {
     beforeAll(async () => {
         await AppDataSource.initialize();
 
-        
+
 
         const truck = {
             brand: "Tata",
@@ -53,14 +50,14 @@ describe('Integration testing trucktrips', () => {
         };
 
         const newDriver1 = AppDataSource.getRepository(drivers).create(driver1);
-        driver1Id = newDriver1.driverId;  
-        
+        driver1Id = newDriver1.driverId;
+
         const driver2 = {
             category: "G2"
         };
 
         const newDriver2 = AppDataSource.getRepository(drivers).create(driver2);
-        driver2Id = newDriver1.driverId;          
+        driver2Id = newDriver1.driverId;
 
     });
 
@@ -78,7 +75,7 @@ describe('Integration testing trucktrips', () => {
             driver1: driver1Id,
             driver2: driver2Id
 
-           
+
         };
 
         const response = await request(app)

@@ -1,7 +1,6 @@
 import request from 'supertest';
 import app from '../../app';
 import { AppDataSource } from '../../data-source';
-import { shipments } from '../../entity/shipments';
 
 describe('Integration testing shipments', () => {
 

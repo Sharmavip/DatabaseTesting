@@ -2,7 +2,6 @@ import request from 'supertest';
 import app from '../../app';
 import { AppDataSource } from '../../data-source';
 import { UserRole } from '../../entity/employees';
-import { employees } from '../../entity/employees';
 
 describe('Integration testing employees', () => {
 

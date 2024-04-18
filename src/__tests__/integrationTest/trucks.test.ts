@@ -1,18 +1,15 @@
 import request from 'supertest';
 import app from '../../app';
 import { AppDataSource } from '../../data-source';
-import { repairs } from '../../entity/repairs';
-import { trucks } from '../../entity/trucks';
-
 
 describe('Integration testing trucks', () => {
 
     // Defining global variables to be used later
     let truckId: number;
-   
+
 
     beforeAll(async () => {
-        await AppDataSource.initialize();       
+        await AppDataSource.initialize();
     });
 
     afterAll(async () => {
@@ -28,7 +25,7 @@ describe('Integration testing trucks', () => {
             year: 2020,
             numberOfRepairs: 3
 
-           
+
         };
 
         const response = await request(app)

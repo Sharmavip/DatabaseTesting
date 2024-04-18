@@ -1,11 +1,10 @@
 import request from 'supertest';
 import app from '../../app';
 import { AppDataSource } from '../../data-source';
-import { UserRole } from '../../entity/role';
+import { UserRole } from '../../entity/employees';
 import { trucks } from '../../entity/trucks';
 import { employees } from '../../entity/employees'
 import { mechanics } from '../../entity/mechanics';
-import { repairs } from '../../entity/repairs';
 
 describe('Integration testing of Repairs', () => {
 
@@ -27,7 +26,7 @@ describe('Integration testing of Repairs', () => {
 
         const newEmployee = AppDataSource.getRepository(employees).create(employee);
         employeeId = newEmployee.employeeId;
-    
+
         const mechanic = {
             vehiclebrandspecialization: 'Tata',
         };
@@ -45,8 +44,8 @@ describe('Integration testing of Repairs', () => {
         };
 
         const newTruck = AppDataSource.getRepository(trucks).create(truck)
-        truckId = newTruck.truckId;   
-    
+        truckId = newTruck.truckId;
+
     })
 
     afterAll(async () => {
@@ -109,5 +108,5 @@ describe('Integration testing of Repairs', () => {
             .get(`/repair/${repairId}`)
             .expect(404);
     });
-    
+
 });

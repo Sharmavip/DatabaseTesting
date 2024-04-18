@@ -1,9 +1,7 @@
 import request from 'supertest';
 import app from '../../app';
 import { AppDataSource } from '../../data-source';
-import { UserRole } from '../../entity/role';
-import { repairs } from '../../entity/repairs';
-import { mechanics } from '../../entity/mechanics';
+import { UserRole } from '../../entity/employees';
 import { employees } from '../../entity/employees';
 
 describe('Integration testing mechanics', () => {
@@ -26,7 +24,7 @@ describe('Integration testing mechanics', () => {
         const newEmployee = AppDataSource.getRepository(employees).create(employee);
         employeeId = newEmployee.employeeId;
 
-        
+
 
     });
 
@@ -39,7 +37,7 @@ describe('Integration testing mechanics', () => {
         const mechanic = {
             vehiclebrandspecialization: "Tata",
             employees: employeeId
-           
+
         };
 
         const response = await request(app)

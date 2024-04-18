@@ -34,7 +34,7 @@ export class RepairsService {
         return await this.repairsRepository.save(repair);
     }
 
-    async update(repairId: number, repairsData: repairs) {
+    async update(repairId: number, repairsData: Partial<repairs>) {
         let repair = await this.findById(repairId);
         if (!repair) return;
         Object.assign(repair, repairsData);

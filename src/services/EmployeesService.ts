@@ -34,7 +34,7 @@ export class EmployeesService {
         return await this.employeesRepository.save(employee);
     }
 
-    async update(employeeId: number, employeesData: employees) {
+    async update(employeeId: number, employeesData: Partial<employees>) {
         let employee = await this.findById(employeeId);
         if (!employee) return;
         Object.assign(employee, employeesData);

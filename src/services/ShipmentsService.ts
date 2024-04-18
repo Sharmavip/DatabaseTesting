@@ -31,7 +31,7 @@ export class ShipmentsService {
         return await this.shipmentsRepository.save(shipment);
     }
 
-    async update(shipmentId: number, shipmentsData: shipments) {
+    async update(shipmentId: number, shipmentsData: Partial<shipments>) {
         let shipment = await this.findById(shipmentId);
         if (!shipment) return;
         Object.assign(shipment, shipmentsData);

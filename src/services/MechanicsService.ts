@@ -34,7 +34,7 @@ export class MechanicsService {
         return await this.mechanicsRepository.save(mechanic);
     }
 
-    async update(mechanicId: number, mechanicsData: mechanics) {
+    async update(mechanicId: number, mechanicsData: Partial<mechanics>) {
         let mechanic = await this.findById(mechanicId);
         if (!mechanic) return;
         Object.assign(mechanic, mechanicsData);

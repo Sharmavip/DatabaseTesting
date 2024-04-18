@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../../app';
 import { AppDataSource } from '../../data-source';
-import { UserRole } from '../../entity/role';
+import { UserRole } from '../../entity/employees';
 import { drivers } from '../../entity/drivers';
 import { employees } from '../../entity/employees';
 

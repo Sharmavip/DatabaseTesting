@@ -31,7 +31,7 @@ export class DriversService {
         return await this.driversRepository.save(drivers);
     }
 
-    async update(driverId: number, driversData: drivers) {
+    async update(driverId: number, driversData: Partial<drivers>) {
         let driver = await this.findById(driverId);
         if (!driver) return;
         Object.assign(driver, driversData);

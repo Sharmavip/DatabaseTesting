@@ -1,8 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, FindOptionsRelationsProperty, Decimal128, Int32 } from "typeorm"
 import { ColumnEnumOptions } from "typeorm/decorator/options/ColumnEnumOptions"
-import { UserRole } from './role'
 import { drivers } from "./drivers";
 import { mechanics } from "./mechanics";
+
+export enum UserRole {
+    DRIVER = "driver",
+    MECHANIC = "mechanic",
+}
 
 @Entity()
 export class employees {

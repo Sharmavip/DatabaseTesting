@@ -33,7 +33,7 @@ export class TrucksService {
         return await this.trucksRepository.save(truck);
     }
 
-    async update(truckId: number, trucksData: trucks) {
+    async update(truckId: number, trucksData: Partial<trucks>) {
         let truck = await this.findById(truckId);
         if (!truck) return;
         Object.assign(truck, trucksData);

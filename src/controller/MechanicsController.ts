@@ -10,14 +10,14 @@ export class MechanicsController {
 
     async getMechanics(req: Request, res: Response) {
         const mechanics = await this.mechanicsService.findAll();
-        res.json(mechanics);
+        res.status(200).json(mechanics);
     }
 
     async getMechanicById(req: Request, res: Response) {
         const id = parseInt(req.params.mechanicId);
         const mechanic = await this.mechanicsService.findById(id);
         if (mechanic) {
-            res.json(mechanic);
+            res.status(200).json(mechanic);
         } else {
             res.status(404).send('Mechanic not found');
         }
@@ -32,7 +32,7 @@ export class MechanicsController {
         const id = parseInt(req.params.mechanicId);
         const updatedMechanic = await this.mechanicsService.update(id, req.body);
         if (updatedMechanic) {
-            res.json(updatedMechanic);
+            res.status(200).json(updatedMechanic);
         } else {
             res.status(404).send('Mechanic not found');
         }

@@ -10,14 +10,14 @@ export class RepairsController {
 
     async getRepairs(req: Request, res: Response) {
         const repairs = await this.repairsService.findAll();
-        res.json(repairs);
+        res.status(200).json(repairs);
     }
 
     async getRepairById(req: Request, res: Response) {
         const id = parseInt(req.params.repairId);
         const repair = await this.repairsService.findById(id);
         if (repair) {
-            res.json(repair);
+            res.status(200).json(repair);
         } else {
             res.status(404).send('Repair not found');
         }
@@ -32,7 +32,7 @@ export class RepairsController {
         const id = parseInt(req.params.repairId);
         const updatedRepair = await this.repairsService.update(id, req.body);
         if (updatedRepair) {
-            res.json(updatedRepair);
+            res.status(200).json(updatedRepair);
         } else {
             res.status(404).send('Repair not found');
         }

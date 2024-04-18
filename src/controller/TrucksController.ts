@@ -10,14 +10,14 @@ export class TrucksController {
 
     async getTrucks(req: Request, res: Response) {
         const trucks = await this.trucksService.findAll();
-        res.json(trucks);
+        res.status(200).json(trucks);
     }
 
     async getTruckById(req: Request, res: Response) {
         const id = parseInt(req.params.truckId);
         const truck = await this.trucksService.findById(id);
         if (truck) {
-            res.json(truck);
+            res.status(200).json(truck);
         } else {
             res.status(404).send('Truck not found');
         }
@@ -32,7 +32,7 @@ export class TrucksController {
         const id = parseInt(req.params.truckId);
         const updatedTruck = await this.trucksService.update(id, req.body);
         if (updatedTruck) {
-            res.json(updatedTruck);
+            res.status(200).json(updatedTruck);
         } else {
             res.status(404).send('Truck not found');
         }

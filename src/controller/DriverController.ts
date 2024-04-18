@@ -10,14 +10,14 @@ export class DriversController {
 
     async getDrivers(req: Request, res: Response) {
         const drivers = await this.driversService.findAll();
-        res.json(drivers);
+        res.status(200).json(drivers);
     }
 
     async getDriverById(req: Request, res: Response) {
         const id = parseInt(req.params.driverId);
         const driver = await this.driversService.findById(id);
         if (driver) {
-            res.json(driver);
+            res.status(200).json(driver);
         } else {
             res.status(404).send('Driver not found');
         }
@@ -32,7 +32,7 @@ export class DriversController {
         const id = parseInt(req.params.driverId);
         const updatedDriver = await this.driversService.update(id, req.body);
         if (updatedDriver) {
-            res.json(updatedDriver);
+            res.status(200).json(updatedDriver);
         } else {
             res.status(404).send('Driver not found');
         }

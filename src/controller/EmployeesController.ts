@@ -10,14 +10,14 @@ export class EmployeesController {
 
     async getEmployees(req: Request, res: Response) {
         const employees = await this.employeesService.findAll();
-        res.json(employees);
+        res.status(200).json(employees);
     }
 
     async getEmployeeById(req: Request, res: Response) {
         const id = parseInt(req.params.employeeId);
         const employee = await this.employeesService.findById(id);
         if (employee) {
-            res.json(employee);
+            res.status(200).json(employee);
         } else {
             res.status(404).send('Employee not found');
         }
@@ -32,7 +32,7 @@ export class EmployeesController {
         const id = parseInt(req.params.employeeId);
         const updatedEmployee = await this.employeesService.update(id, req.body);
         if (updatedEmployee) {
-            res.json(updatedEmployee);
+            res.status(200).json(updatedEmployee);
         } else {
             res.status(404).send('Employee not found');
         }

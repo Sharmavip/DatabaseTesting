@@ -1,11 +1,13 @@
-# FROM node:16
+FROM node:16
 
-# WORKDIR /usr/src/app
+# Install required dependencies
 
-# COPY package*.json ./
-# RUN npm install
+WORKDIR /usr/src/app
 
-# COPY . .
+COPY package*.json ./
+RUN npm install
 
-# EXPOSE 3000
-# CMD ["npm", "run", "start"]
+COPY . .
+
+EXPOSE 3000
+CMD ["npm", "run", "start"]

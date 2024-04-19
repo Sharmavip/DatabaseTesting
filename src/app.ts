@@ -130,7 +130,7 @@ AppDataSource.initialize().then(() => {
     app.get('/truckTrips', (req: Request, res: Response) => {
         truckTripsController.getTruckTrips(req, res);
     });
-    app.get('/truckTrips/:tripId', (req: Request, res: Response) => {
+    app.get('/truckTrip/:tripId', (req: Request, res: Response) => {
         truckTripsController.getTruckTripById(req, res);
     });
     app.post('/truckTrip', (req: Request, res: Response) => {

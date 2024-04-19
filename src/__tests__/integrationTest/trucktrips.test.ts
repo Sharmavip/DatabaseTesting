@@ -5,7 +5,7 @@ import { drivers } from '../../entity/drivers';
 import { trucks } from '../../entity/trucks';
 import { shipments } from '../../entity/shipments';
 
-describe('Integration testing trucktrips', () => {
+describe('Integration testing truckTrips', () => {
 
     // Defining global variables to be used later
 
@@ -17,8 +17,6 @@ describe('Integration testing trucktrips', () => {
 
     beforeAll(async () => {
         await AppDataSource.initialize();
-
-
 
         const truck = {
             brand: "Tata",
@@ -65,47 +63,45 @@ describe('Integration testing trucktrips', () => {
         await AppDataSource.destroy();
     });
 
-    it('POST /trucktrips should create a trucktrip', async () => {
+    it('POST /truckTrip should create a truckTrip', async () => {
 
-        const trucktrip = {
+        const truckTrip = {
             routeFrom: "Waterloo",
             routeTo: "Tornoto",
             trucks: truckId,
             shipments: shipmentId,
             driver1: driver1Id,
             driver2: driver2Id
-
-
         };
 
         const response = await request(app)
-            .post('/trucktrip')
-            .send(trucktrip)
+            .post('/truckTrip')
+            .send(truckTrip)
             .expect(202);
 
         tripId = response.body.tripId;
     });
 
-    it('GET /trucktrips should return all trucktrips', async () => {
+    it('GET /truckTrips should return all truckTrips', async () => {
 
         const response = await request(app)
-            .get('/trucktrips')
+            .get('/truckTrips')
             .expect(200);
 
         expect(response.body.length).toBeGreaterThan(0);
     });
 
-    it('GET /trucktrip/:tripId should return trucktrip by id', async () => {
+    it('GET /truckTrip/:tripId should return truckTrip by id', async () => {
         const response = await request(app)
-            .get(`/trucktrips/${tripId}`)
+            .get(`/truckTrip/${tripId}`)
             .expect(200);
 
         expect(response.body.tripId).toBe(tripId);
     });
 
-    it('PUT /trucktrip/:trucktrip should update trucktrip by id', async () => {
+    it('PUT /truckTrip/:tripId should update truckTrip by id', async () => {
         const response = await request(app)
-            .put(`/trucktrip/${tripId}`)
+            .put(`/truckTrip/${tripId}`)
             .send({
                 routeFrom: "Guleph",
                 routeTo: "Waterloo",
@@ -117,15 +113,15 @@ describe('Integration testing trucktrips', () => {
         expect(response.body.tripId).toBe(tripId);
     });
 
-    it('DELETE /trucktrip/:tripId should delete trucktrip by id', async () => {
+    it('DELETE /truckTrip/:tripId should delete truckTrip by id', async () => {
         await request(app)
-            .delete(`/trucktrip/${tripId}`)
+            .delete(`/truckTrip/${tripId}`)
             .expect(202);
     });
 
-    it('GET /trucktrip/:tripId should return 404 not found', async () => {
+    it('GET /truckTrip/:tripId should return 404 not found', async () => {
         const response = await request(app)
-            .get(`/trucktrip/${tripId}`)
+            .get(`/truckTrip/${tripId}`)
             .expect(404);
     });
 });

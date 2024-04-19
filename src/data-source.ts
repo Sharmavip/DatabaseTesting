@@ -19,7 +19,7 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: false,
     entities: [employees, trucks, drivers, shipments, mechanics, truckTrips, repairs],
-    migrations: ['/migration/*.ts'],
+    migrations: ['src/migration/**/*.ts'],
     subscribers: [],
 })
 

@@ -788,7 +788,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/truckTrips/1",
+							"raw": "http://localhost:3000/truckTrip/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
